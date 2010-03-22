@@ -65,7 +65,8 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 		var valueObject:Object;
 		for (var n:Number = 0; n < _valueClasses.length; n++ )
 		{
-			if (typeof(arguments[n]) == "string" || typeof(arguments[n]) == "number")
+			if (typeof(arguments[n]) == "string" && _valueClasses[n] == String 
+				|| typeof(arguments[n]) == "number" && _valueClasses[n] == Number)
 				continue;
 			
 			if ((valueObject = arguments[n]) == null
