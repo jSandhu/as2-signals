@@ -1,8 +1,5 @@
 ﻿import org.osflash.signals.ISignal;
 import org.osflash.signals.IDispatcher;
-import asunit.errors.ClassNameUndefinedError;
-import asunit.errors.ClassNotFoundError;
-import asunit.flash.errors.IllegalOperationError;
 
 class org.osflash.signals.Signal implements ISignal, IDispatcher
 {
@@ -63,20 +60,6 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 		}
 	}
 	
-	private function checkPrimitiveArgumentValue(argument, valueClass:Function):Boolean
-	{
-		switch (valueClass)
-		{
-			case String :
-			case Number :
-				if (argument == (new valueClass(argument)))
-					return true;
-			default:
-		}
-		
-		return false;	
-	}
-	
 	public function dispatch():Void
 	{
 		var valueObject:Object;
@@ -84,7 +67,7 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 		var str:String;
 		for (var n:Number = 0; n < _valueClasses.length; n++ )
 		{
-			if (checkPrimitiveArgumentValue(arguments[n], _valueClasses[n]))
+			if (typeof(arguments[n]) == "string" || typeof(arguments[n]) == "number")
 				continue;
 			
 			if ((valueObject = arguments[n]) == null
