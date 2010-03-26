@@ -51,4 +51,34 @@ class org.osflash.signals.SignalDispatchNonEventTest extends TestCase
 	{
 		assertEquals(testString, dispatchedString); 
 	}
+	
+	////
+	
+	public function test_dispatch_Boolean_should_call_listener_with_Boolean():Void
+	{
+		completed = new Signal(Boolean);
+		completed.add(check_dispatch_Boolean_should_call_listener_with_Boolean, this);
+		completed.dispatch(true);		
+	}
+	
+	private function check_dispatch_Boolean_should_call_listener_with_Boolean(dispatchedBoolean:Boolean):Void
+	{
+		assertTrue(dispatchedBoolean);
+	}
+	
+	////
+	
+	public function test_dispatch_Function_should_call_listener_with_Function():Void
+	{
+		completed = new Signal(Function);
+		completed.add(check_dispatch_Function_should_call_listener_with_Function, this);
+		
+		var functionToDispatch:Function = function():Void{};
+		completed.dispatch(functionToDispatch);		
+	}
+	
+	private function check_dispatch_Function_should_call_listener_with_Function(dispatchedFunction:Function):Void
+	{
+		assertEquals("function", typeof(dispatchedFunction));
+	}
 }

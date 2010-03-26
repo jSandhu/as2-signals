@@ -65,8 +65,7 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 		var valueObject:Object;
 		for (var n:Number = 0; n < _valueClasses.length; n++ )
 		{
-			if (typeof(arguments[n]) == "string" && _valueClasses[n] == String 
-				|| typeof(arguments[n]) == "number" && _valueClasses[n] == Number)
+			if (primitiveMatchesValueClass(arguments[n], _valueClasses[n]))
 				continue;
 			
 			if ((valueObject = arguments[n]) == null
@@ -91,6 +90,16 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 			listenerBox.listener.apply(listenerBox.scope, arguments);
 		}
 		listenersNeedCloning = false;
+	}
+	
+	private function primitiveMatchesValueClass(primitive, valueClass:Function):Boolean
+	{
+		if (typeof(primitive) == "string" && valueClass == String 
+			|| typeof(primitive) == "number" && valueClass == Number
+			|| typeof(primitive) == "boolean" && valueClass == Boolean)
+			return true;
+			
+		return false;
 	}
 	
 	private function setValueClasses(valueClasses:Array):Void
