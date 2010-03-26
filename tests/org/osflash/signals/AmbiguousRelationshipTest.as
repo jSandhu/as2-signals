@@ -55,7 +55,7 @@ class org.osflash.signals.AmbiguousRelationshipTest extends TestCase
 	{
 		completed.add(failIfCalled, this);
 		completed.add(failIfCalled, this);
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 	
 	////
@@ -64,6 +64,6 @@ class org.osflash.signals.AmbiguousRelationshipTest extends TestCase
 	{
 		completed.addOnce(failIfCalled);
 		completed.addOnce(failIfCalled);
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 }

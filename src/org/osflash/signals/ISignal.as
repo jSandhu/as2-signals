@@ -1,12 +1,12 @@
 ﻿interface org.osflash.signals.ISignal
 {
 		/**
-		 * An optional array of classes defining the types of parameters sent to listeners.
+		 * Get array of classes defining the types of parameters sent to listeners.
 		 */
-		function get valueClasses():Array;
+		function getValueClasses():Array;
 		
-		/** The current number of listeners for the signal. */
-		function get numListeners():Number;
+		/** Get the current number of listeners for the signal. */
+		function getNumListeners():Number;
 		
 		/**
 		 * Subscribes a listener for the signal.

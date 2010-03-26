@@ -50,7 +50,7 @@ class org.osflash.signals.SignalScopeTest extends TestCase
 		completed.add(onComplete, object1);
 		completed.add(onComplete, object2);
 		
-		assertEquals(2, completed.numListeners);
+		assertEquals(2, completed.getNumListeners());
 	}
 	
 	private function onComplete():Void

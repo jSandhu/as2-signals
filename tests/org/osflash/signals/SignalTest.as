@@ -32,7 +32,7 @@ class org.osflash.signals.SignalTest extends TestCase
 	
 	public function test_numListeners_is_0_after_creation():Void
 	{
-		assertEquals(0, completed.numListeners);
+		assertEquals(0, completed.getNumListeners());
 	}
 	
 	////
@@ -45,7 +45,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		completed.add(secondListener, this);
 		completed.remove(secondListener, this);
 		
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 	
 	////
@@ -55,7 +55,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		completed.add(function():Void { }, this);
 		completed.add(function():Void { }, this);
 		completed.removeAll();
-		assertEquals(0, completed.numListeners);
+		assertEquals(0, completed.getNumListeners());
 	}
 	
 	////
@@ -83,7 +83,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		var emptyListener:Function = function():Void { };
 		completed.add(emptyListener);
 		completed.add(emptyListener);
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 	
 	////
@@ -93,7 +93,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		var emptyListener:Function = function():Void { };
 		completed.addOnce(emptyListener);
 		completed.addOnce(emptyListener);
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 	
 	////
@@ -143,7 +143,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		completed.add(function():Void { } );
 		completed.remove(function():Void { } );
 		
-		assertEquals(1, completed.numListeners);
+		assertEquals(1, completed.getNumListeners());
 	}
 	
 	////
@@ -186,7 +186,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		listenerDelegate = addAsync(newEmptyHandler(), 10);
 		completed.add(listenerDelegate, this);
 		
-		numListenersBefore = completed.numListeners;
+		numListenersBefore = completed.getNumListeners();
 		
 		completed.dispatch();
 	}
@@ -212,7 +212,7 @@ class org.osflash.signals.SignalTest extends TestCase
 	{
 		completed.add(addAsync(remove_all_listeners, 10), this);
 		completed.add(addAsync(newEmptyHandler(), 10), this);
-		numListenersBefore = completed.numListeners;
+		numListenersBefore = completed.getNumListeners();
 		
 		completed.dispatch();
 	}
@@ -241,7 +241,7 @@ class org.osflash.signals.SignalTest extends TestCase
 	{
 		completed.addOnce(newEmptyHandler(), this);
 		completed.dispatch();
-		assertEquals(0, completed.numListeners);
+		assertEquals(0, completed.getNumListeners());
 	}
 
 	////
@@ -259,7 +259,7 @@ class org.osflash.signals.SignalTest extends TestCase
 		completed.addOnce(newEmptyHandler(), this);
 		completed.addOnce(newEmptyHandler(), this);
 		completed.dispatch();
-		assertEquals(0, completed.numListeners);
+		assertEquals(0, completed.getNumListeners());
 	}
 
 	////

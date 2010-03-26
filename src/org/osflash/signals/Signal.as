@@ -20,8 +20,8 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 			setValueClasses(arguments);
 	}
 	
-	public function get numListeners():Number { return listenerBoxes.length; }
-	public function get valueClasses():Array { return _valueClasses; }
+	public function getNumListeners():Number { return listenerBoxes.length; }
+	public function getValueClasses():Array { return _valueClasses; }
 	
 	public function add(listener:Function, scope:Object):Void
 	{
@@ -112,11 +112,15 @@ class org.osflash.signals.Signal implements ISignal, IDispatcher
 			if (listenerBoxes[i].listener == listener && listenerBoxes[i].scope == scope)
 			{
 				if (listenerBoxes[i].once && !once)
+				{
 					throw new Error('You cannot addOnce() then try to add() the same listener ' +
 						'without removing the relationship first.');
+				}
 				else if (once && !listenerBoxes[i].once)
+				{
 					throw new Error('You cannot add() then addOnce() the same listener ' +
 						'without removing the relationship first.');
+				}
 				return;
 			}
 		}
